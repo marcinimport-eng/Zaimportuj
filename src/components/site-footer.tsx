@@ -1,50 +1,71 @@
 import Link from "next/link";
 
+const COLS = [
+  {
+    h: "Usługi",
+    items: [
+      ["Kompleksowy import", "/uslugi"],
+      ["Weryfikacja dostawcy 48h", "/uslugi"],
+      ["Inspekcja fabryki", "/uslugi"],
+      ["Import maszyn + leasing", "/uslugi"],
+    ],
+  },
+  {
+    h: "Narzędzia",
+    items: [
+      ["Kalkulator landed cost", "/#kalkulator"],
+      ["Baza wiedzy / Akademia", "/baza-wiedzy"],
+      ["Konwerter CBM", "/baza-wiedzy"],
+      ["Wizard Incoterms", "/baza-wiedzy"],
+    ],
+  },
+  {
+    h: "Firma",
+    items: [
+      ["O nas", "/o-nas"],
+      ["Cennik", "/cennik"],
+      ["Bezpieczeństwo", "/o-nas"],
+      ["Panel klienta", "/app"],
+    ],
+  },
+];
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-line bg-card">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent font-mono text-sm font-bold text-white">Z</span>
-            <span className="font-semibold tracking-tight">zaimportuj.pl</span>
+            <span className="flex h-6 w-6 items-center justify-center rounded-[4px] bg-accent font-mono text-[13px] font-bold leading-none text-white">Z</span>
+            <span className="text-[15px] font-semibold tracking-tight">zaimportuj.pl</span>
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-ink-soft">
+          <p className="mt-4 max-w-[26ch] text-[13px] leading-relaxed text-ink-soft">
             AI-native platforma importu z Chin. Biuro w Warszawie, zespół
             inspekcyjny w Shenzhen i Yiwu.
           </p>
         </div>
-        <div>
-          <h3 className="text-sm font-semibold">Usługi</h3>
-          <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-            <li><Link href="/uslugi" className="hover:text-accent">Kompleksowy import</Link></li>
-            <li><Link href="/uslugi" className="hover:text-accent">Weryfikacja dostawcy 48h</Link></li>
-            <li><Link href="/uslugi" className="hover:text-accent">Inspekcja fabryki</Link></li>
-            <li><Link href="/uslugi" className="hover:text-accent">Import maszyn + leasing</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="text-sm font-semibold">Narzędzia</h3>
-          <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-            <li><Link href="/#kalkulator" className="hover:text-accent">Kalkulator landed cost</Link></li>
-            <li><Link href="/baza-wiedzy" className="hover:text-accent">Baza wiedzy / Akademia</Link></li>
-            <li><Link href="/baza-wiedzy" className="hover:text-accent">Konwerter CBM</Link></li>
-            <li><Link href="/baza-wiedzy" className="hover:text-accent">Wizard Incoterms</Link></li>
-          </ul>
-        </div>
-        <div>
-          <h3 className="text-sm font-semibold">Firma</h3>
-          <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-            <li><Link href="/o-nas" className="hover:text-accent">O nas</Link></li>
-            <li><Link href="/cennik" className="hover:text-accent">Cennik</Link></li>
-            <li><Link href="/o-nas" className="hover:text-accent">Bezpieczeństwo</Link></li>
-            <li><a href="mailto:office@xtn.pl" className="hover:text-accent">Kontakt</a></li>
-          </ul>
-        </div>
+        {COLS.map((col) => (
+          <div key={col.h}>
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft">
+              {col.h}
+            </h3>
+            <ul className="mt-4 space-y-2.5 text-[13px]">
+              {col.items.map(([label, href]) => (
+                <li key={label}>
+                  <Link href={href} className="text-ink-soft transition hover:text-ink">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-      <div className="border-t border-line py-5 text-center text-xs text-ink-soft">
-        © 2026 SinoFlow sp. z o.o. · Kalkulacje mają charakter szacunkowy i wymagają
-        potwierdzenia agenta celnego. Stan prawny: lipiec 2026.
+      <div className="border-t border-line">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-4 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft sm:px-6">
+          <span>© 2026 SinoFlow sp. z o.o. · WAW 52.23°N · SZX 22.54°N</span>
+          <span>Kalkulacje szacunkowe · wymagają potwierdzenia agenta celnego · stan: 07.2026</span>
+        </div>
       </div>
     </footer>
   );

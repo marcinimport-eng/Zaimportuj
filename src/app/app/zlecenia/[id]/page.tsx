@@ -8,12 +8,12 @@ export function generateStaticParams() {
   return ORDERS.map((o) => ({ id: o.id }));
 }
 
-const EVENT_ICON: Record<string, string> = {
-  status: "●",
-  doc: "▤",
-  payment: "◧",
-  media: "▣",
-  alert: "⚠",
+const EVENT_CODE: Record<string, string> = {
+  status: "ST",
+  doc: "DOC",
+  payment: "PAY",
+  media: "IMG",
+  alert: "ALT",
 };
 
 export default async function OrderPage({
@@ -27,91 +27,94 @@ export default async function OrderPage({
 
   return (
     <div className="mx-auto max-w-5xl">
-      <Link href="/app" className="text-xs text-ink-soft hover:text-accent">
+      <Link
+        href="/app"
+        className="font-mono text-[10px] uppercase tracking-[0.1em] text-ink-soft hover:text-ink"
+      >
         ← Dashboard
       </Link>
 
-      <div className="mt-3 flex flex-wrap items-start justify-between gap-3">
+      <div className="mt-4 flex flex-wrap items-start justify-between gap-3">
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="font-mono text-sm font-bold text-accent">{order.id}</span>
-            <span className="rounded-full bg-accent-soft px-2.5 py-0.5 text-[11px] font-semibold capitalize text-accent">
+            <span className="font-mono text-sm font-semibold text-accent">{order.id}</span>
+            <span className="border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
               {order.status}
             </span>
           </div>
-          <h1 className="mt-1.5 text-2xl font-bold tracking-tight">{order.product}</h1>
+          <h1 className="mt-2 text-2xl font-semibold tracking-[-0.02em]">{order.product}</h1>
           <div className="mt-1 text-sm text-ink-soft">{order.supplier}</div>
         </div>
         <div className="text-right">
-          <div className="tabular font-mono text-2xl font-bold">
+          <div className="tabular font-mono text-2xl font-semibold">
             {formatPln(order.valueUsd * 3.68)}
           </div>
-          <div className="text-xs text-ink-soft">
+          <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
             {order.eta !== "—" ? `ETA ${order.eta}` : "w wycenie"}
           </div>
         </div>
       </div>
 
-      <div className="mt-5 rounded-2xl border border-line bg-card p-5">
+      <div className="mt-5 border border-line bg-card p-5">
         <Pipeline status={order.status} />
         {order.vessel && (
-          <div className="mt-4 flex items-center justify-between rounded-xl bg-paper p-3.5 text-sm">
+          <div className="mt-4 flex items-center justify-between border-t border-line pt-3 font-mono text-[11px] uppercase tracking-[0.08em]">
             <span className="flex items-center gap-2">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-sky-500" />
-              <span className="font-medium">{order.vessel}</span>
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-sky-600" />
+              {order.vessel}
             </span>
-            <span className="tabular font-mono text-xs text-ink-soft">
-              postęp trasy: {order.progressPct}%
-            </span>
+            <span className="tabular text-ink-soft">trasa: {order.progressPct}%</span>
           </div>
         )}
       </div>
 
       {order.nextPayment && (
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/40 bg-accent-soft p-5">
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4 border border-accent/40 bg-accent-soft/60 p-5">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-accent">
+            <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-accent">
               Najbliższa płatność
             </div>
-            <div className="mt-1 font-semibold">{order.nextPayment.label}</div>
-            <div className="text-xs text-ink-soft">termin: {order.nextPayment.due}</div>
+            <div className="mt-1.5 text-sm font-semibold">{order.nextPayment.label}</div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
+              termin: {order.nextPayment.due}
+            </div>
           </div>
           <div className="flex items-center gap-4">
-            <span className="tabular font-mono text-xl font-bold">
+            <span className="tabular font-mono text-xl font-semibold">
               {formatPln(order.nextPayment.amountPln)}
             </span>
-            <button className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-hover">
+            <button className="bg-accent px-5 py-2.5 text-sm font-medium text-white transition hover:bg-accent-hover">
               Zapłać (P24)
             </button>
           </div>
         </div>
       )}
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
+      <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px]">
         {/* Timeline */}
         <section>
-          <h2 className="text-lg font-semibold">Historia zlecenia</h2>
-          <ol className="mt-4 space-y-0">
+          <div className="eyebrow">Historia zlecenia</div>
+          <ol className="mt-5">
             {order.events.map((e, i) => (
-              <li key={e.date + e.title} className="relative flex gap-4 pb-6">
+              <li key={e.date + e.title} className="relative flex gap-4 pb-5">
                 {i < order.events.length - 1 && (
-                  <span className="absolute left-[11px] top-7 h-full w-px bg-line" aria-hidden />
+                  <span className="absolute left-[17px] top-8 h-full w-px bg-line" aria-hidden />
                 )}
                 <span
-                  className={`z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[10px] ${
+                  className={`z-10 flex h-9 w-9 shrink-0 items-center justify-center font-mono text-[9px] font-semibold ${
                     i === 0
                       ? "bg-accent text-white"
                       : "border border-line bg-card text-ink-soft"
                   }`}
                 >
-                  {EVENT_ICON[e.kind]}
+                  {EVENT_CODE[e.kind]}
                 </span>
-                <div className="min-w-0 rounded-xl border border-line bg-card p-4">
+                <div className="min-w-0 flex-1 border border-line bg-card p-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <h3 className="text-sm font-semibold">{e.title}</h3>
-                    <time className="tabular font-mono text-[11px] text-ink-soft">{e.date}</time>
+                    <h3 className="text-sm font-semibold tracking-tight">{e.title}</h3>
+                    <time className="tabular font-mono text-[10px] text-ink-soft">{e.date}</time>
                   </div>
-                  <p className="mt-1 text-sm leading-relaxed text-ink-soft">{e.detail}</p>
+                  <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">{e.detail}</p>
                 </div>
               </li>
             ))}
@@ -119,17 +122,19 @@ export default async function OrderPage({
         </section>
 
         {/* Side: dokumenty + inspekcja */}
-        <aside className="space-y-6">
+        <aside className="space-y-8">
           <div>
-            <h2 className="text-lg font-semibold">Dokumenty</h2>
-            <ul className="mt-3 divide-y divide-line rounded-2xl border border-line bg-card">
+            <div className="eyebrow">Dokumenty</div>
+            <ul className="mt-4 divide-y divide-line border-y border-line">
               {order.documents.map((d) => (
-                <li key={d.name} className="flex items-center justify-between gap-3 px-4 py-3">
+                <li key={d.name} className="flex items-center justify-between gap-3 py-3">
                   <div className="min-w-0">
-                    <div className="truncate text-sm font-medium">{d.name}</div>
-                    <div className="text-[11px] text-ink-soft">{d.type} · {d.date}</div>
+                    <div className="truncate text-[13px] font-medium">{d.name}</div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
+                      {d.type} · {d.date}
+                    </div>
                   </div>
-                  <button className="shrink-0 text-xs font-semibold text-accent hover:underline">
+                  <button className="shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-accent hover:underline">
                     Podgląd
                   </button>
                 </li>
@@ -139,29 +144,31 @@ export default async function OrderPage({
 
           {order.inspectionPhotos > 0 && (
             <div>
-              <h2 className="text-lg font-semibold">Media z inspekcji</h2>
-              <div className="mt-3 grid grid-cols-3 gap-2">
+              <div className="eyebrow">Media z inspekcji</div>
+              <div className="mt-4 grid grid-cols-3 gap-px overflow-hidden border border-line bg-line">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="flex aspect-square items-center justify-center rounded-lg bg-gradient-to-br from-line to-paper text-[10px] text-ink-soft"
+                    className="flex aspect-square items-center justify-center bg-paper font-mono text-[9px] text-ink-soft"
                   >
                     IMG_{String(i + 1).padStart(2, "0")}
                   </div>
                 ))}
               </div>
-              <button className="mt-2.5 w-full rounded-lg border border-line py-2 text-xs font-medium text-ink-soft transition hover:border-accent hover:text-accent">
-                Zobacz wszystkie ({order.inspectionPhotos}) →
+              <button className="mt-2.5 w-full border border-line py-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft transition hover:border-ink hover:text-ink">
+                Zobacz wszystkie ({order.inspectionPhotos}) ↗
               </button>
             </div>
           )}
 
-          <div className="rounded-2xl bg-ink p-4 text-paper">
-            <div className="text-xs font-semibold">Copilot AI</div>
-            <p className="mt-1.5 text-[11px] leading-relaxed opacity-70">
+          <div className="bg-ink p-4 text-paper">
+            <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em]">
+              Copilot AI
+            </div>
+            <p className="mt-2 text-[11px] leading-relaxed opacity-60">
               „Przelicz co się stanie, jak zwiększę zamówienie do 5000 szt.”
             </p>
-            <button className="mt-3 w-full rounded-lg bg-accent py-2 text-xs font-semibold text-white transition hover:bg-accent-hover">
+            <button className="mt-3 w-full bg-accent py-2 text-xs font-medium text-white transition hover:bg-accent-hover">
               Zapytaj o to zlecenie
             </button>
           </div>

@@ -40,54 +40,77 @@ const EXAMPLES = [
 
 export default function PricingPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-      <h1 className="text-4xl font-bold tracking-tight">Cennik</h1>
-      <p className="mt-3 max-w-2xl text-ink-soft">
-        Pełna transparentność: prowizja progresywna liczona od wartości towaru,
-        bez ukrytych opłat. Fracht, cło i VAT przechodzą przez nas 1:1 z faktur
-        źródłowych — wszystkie dokumenty widzisz w panelu.
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="eyebrow">Cennik</div>
+      <h1 className="mt-4 text-4xl font-semibold tracking-[-0.02em]">
+        Pełna transparentność
+      </h1>
+      <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-soft">
+        Prowizja progresywna liczona od wartości towaru, bez ukrytych opłat.
+        Fracht, cło i VAT przechodzą przez nas 1:1 z faktur źródłowych —
+        wszystkie dokumenty widzisz w panelu.
       </p>
 
-      <h2 className="mt-12 text-xl font-semibold">Prowizja od importu kompleksowego</h2>
-      <div className="mt-4 overflow-x-auto rounded-2xl border border-line">
+      <h2 className="mt-12 text-xl font-semibold tracking-tight">
+        Prowizja od importu kompleksowego
+      </h2>
+      <div className="mt-4 overflow-x-auto border border-line">
         <table className="w-full min-w-[480px] bg-card text-sm">
           <thead>
-            <tr className="border-b border-line text-left text-xs uppercase tracking-wide text-ink-soft">
-              <th className="px-5 py-3.5 font-medium">Wartość zamówienia (towar)</th>
-              <th className="px-5 py-3.5 font-medium">Prowizja</th>
-              <th className="px-5 py-3.5 font-medium">Uwagi</th>
+            <tr className="border-b border-line text-left">
+              <th className="px-5 py-3 font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-ink-soft">
+                Wartość zamówienia (towar)
+              </th>
+              <th className="px-5 py-3 font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-ink-soft">
+                Prowizja
+              </th>
+              <th className="px-5 py-3 font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-ink-soft">
+                Uwagi
+              </th>
             </tr>
           </thead>
           <tbody>
             {COMMISSION.map((c) => (
               <tr key={c.range} className="border-b border-line last:border-0">
-                <td className="px-5 py-3.5">{c.range}</td>
-                <td className="tabular px-5 py-3.5 font-mono font-bold text-accent">{c.rate}</td>
-                <td className="px-5 py-3.5 text-ink-soft">{c.min}</td>
+                <td className="px-5 py-3">{c.range}</td>
+                <td className="tabular px-5 py-3 font-mono font-semibold text-accent">{c.rate}</td>
+                <td className="px-5 py-3 text-ink-soft">{c.min}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      <h2 className="mt-12 text-xl font-semibold">Przykładowe kalkulacje</h2>
-      <div className="mt-4 grid gap-4 md:grid-cols-3">
+      <h2 className="mt-12 text-xl font-semibold tracking-tight">Przykładowe kalkulacje</h2>
+      <div className="mt-4 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3">
         {EXAMPLES.map((e) => (
-          <div key={e.product} className="rounded-2xl border border-line bg-card p-5">
-            <h3 className="text-sm font-semibold">{e.product}</h3>
-            <dl className="mt-4 space-y-2 text-sm">
-              <div className="flex justify-between"><dt className="text-ink-soft">Towar (EXW)</dt><dd className="tabular font-mono">{e.goods}</dd></div>
-              <div className="flex justify-between"><dt className="text-ink-soft">Landed cost</dt><dd className="tabular font-mono font-semibold">{e.landed}</dd></div>
-              <div className="flex justify-between"><dt className="text-ink-soft">Na sztukę</dt><dd className="tabular font-mono">{e.unit}</dd></div>
-              <div className="flex justify-between border-t border-line pt-2"><dt className="text-ink-soft">Nasza prowizja</dt><dd className="tabular font-mono font-bold text-accent">{e.commission}</dd></div>
+          <div key={e.product} className="bg-card p-5">
+            <h3 className="text-sm font-semibold tracking-tight">{e.product}</h3>
+            <dl className="mt-4">
+              <div className="flex justify-between border-b border-line py-2 text-[13px]">
+                <dt className="text-ink-soft">Towar (EXW)</dt>
+                <dd className="tabular font-mono">{e.goods}</dd>
+              </div>
+              <div className="flex justify-between border-b border-line py-2 text-[13px]">
+                <dt className="text-ink-soft">Landed cost</dt>
+                <dd className="tabular font-mono font-semibold">{e.landed}</dd>
+              </div>
+              <div className="flex justify-between border-b border-line py-2 text-[13px]">
+                <dt className="text-ink-soft">Na sztukę</dt>
+                <dd className="tabular font-mono">{e.unit}</dd>
+              </div>
+              <div className="flex justify-between py-2 text-[13px]">
+                <dt className="text-ink-soft">Nasza prowizja</dt>
+                <dd className="tabular font-mono font-semibold text-accent">{e.commission}</dd>
+              </div>
             </dl>
           </div>
         ))}
       </div>
 
-      <p className="mt-8 text-xs text-ink-soft">
-        Kalkulacje przykładowe wg kursów i stawek z 06.07.2026. Dokładną wycenę
-        Twojego produktu policzysz kalkulatorem na stronie głównej.
+      <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
+        Kalkulacje przykładowe wg kursów i stawek z 06.07.2026 · dokładną wycenę
+        policzysz kalkulatorem na stronie głównej
       </p>
     </div>
   );

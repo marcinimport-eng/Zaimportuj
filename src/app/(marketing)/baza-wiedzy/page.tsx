@@ -53,40 +53,51 @@ const ARTICLES = [
 
 const TOOLS = [
   { name: "Kalkulator cła i VAT", desc: "Stawka dla Twojego kodu HS", href: "/#kalkulator" },
-  { name: "Konwerter CBM", desc: "Kartony → metry sześcienne → koszt frachtu", href: "#" },
+  { name: "Konwerter CBM", desc: "Kartony → m³ → koszt frachtu", href: "#" },
   { name: "Wizard Incoterms", desc: "EXW, FOB czy CIF? 5 pytań i wiesz", href: "#" },
-  { name: "Słownik importera", desc: "120 pojęć z celno-logistycznego żargonu", href: "#" },
+  { name: "Słownik importera", desc: "120 pojęć celno-logistycznych", href: "#" },
 ];
 
 export default function KnowledgeBasePage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-      <h1 className="text-4xl font-bold tracking-tight">Baza wiedzy</h1>
-      <p className="mt-3 max-w-2xl text-ink-soft">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="eyebrow">Baza wiedzy</div>
+      <h1 className="mt-4 text-4xl font-semibold tracking-[-0.02em]">
+        Akademia Importera
+      </h1>
+      <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-soft">
         Artykuły pisane przez praktyków, z datą aktualizacji i wersjonowaniem
-        przepisów. Gdy zmienia się TARIC, nasz monitoring AI flaguje artykuły
-        do aktualizacji — i powiadamia klientów, których to dotyczy.
+        przepisów. Gdy zmienia się TARIC, monitoring AI flaguje artykuły do
+        aktualizacji — i powiadamia klientów, których to dotyczy.
       </p>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {TOOLS.map((t) => (
-          <a key={t.name} href={t.href} className="group rounded-2xl border border-line bg-card p-5 transition hover:border-accent">
-            <h3 className="font-semibold group-hover:text-accent">{t.name}</h3>
-            <p className="mt-1.5 text-xs text-ink-soft">{t.desc}</p>
+          <a key={t.name} href={t.href} className="group bg-card p-5 transition hover:bg-accent-soft/40">
+            <h3 className="text-sm font-semibold tracking-tight group-hover:text-accent">
+              {t.name}
+            </h3>
+            <p className="mt-1.5 text-xs leading-relaxed text-ink-soft">{t.desc}</p>
           </a>
         ))}
       </div>
 
-      <h2 className="mt-14 text-xl font-semibold">Najnowsze artykuły</h2>
-      <div className="mt-4 divide-y divide-line rounded-2xl border border-line bg-card">
+      <h2 className="mt-12 text-xl font-semibold tracking-tight">Najnowsze artykuły</h2>
+      <div className="mt-4 divide-y divide-line border-y border-line">
         {ARTICLES.map((a) => (
-          <article key={a.title} className="group flex cursor-pointer flex-col gap-1.5 px-6 py-5 transition hover:bg-paper/60">
-            <div className="flex items-center gap-3 text-xs">
-              <span className="rounded-full bg-accent-soft px-2.5 py-0.5 font-semibold text-accent">{a.cluster}</span>
-              <span className="text-ink-soft">aktualizacja: {a.updated} · {a.time} czytania</span>
+          <article key={a.title} className="group grid cursor-pointer gap-1 py-5 transition sm:grid-cols-[140px_1fr_auto] sm:gap-6">
+            <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-accent">
+              {a.cluster}
+            </span>
+            <div>
+              <h3 className="text-[15px] font-semibold tracking-tight group-hover:text-accent">
+                {a.title}
+              </h3>
+              <div className="mt-1 text-xs text-ink-soft">{a.author}</div>
             </div>
-            <h3 className="text-[15px] font-semibold group-hover:text-accent">{a.title}</h3>
-            <div className="text-xs text-ink-soft">{a.author}</div>
+            <span className="tabular font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
+              {a.updated} · {a.time}
+            </span>
           </article>
         ))}
       </div>

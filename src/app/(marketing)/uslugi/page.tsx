@@ -68,31 +68,33 @@ const SERVICES = [
 
 export default function ServicesPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-      <h1 className="text-4xl font-bold tracking-tight">Usługi</h1>
-      <p className="mt-3 max-w-2xl text-ink-soft">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div className="eyebrow">Usługi</div>
+      <h1 className="mt-4 text-4xl font-semibold tracking-[-0.02em]">
+        Cena, zakres i SLA z góry
+      </h1>
+      <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-soft">
         Każda usługa to produkt: znasz cenę, zakres i termin zanim zamówisz.
         Zamawiasz online, status śledzisz w panelu.
       </p>
-      <div className="mt-10 grid gap-5 md:grid-cols-2">
+      <div className="mt-10 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2">
         {SERVICES.map((s) => (
-          <div
-            key={s.name}
-            className="relative rounded-2xl border border-line bg-card p-6 transition hover:border-accent/60"
-          >
+          <div key={s.name} className="relative bg-card p-6">
             {s.badge && (
-              <span className="absolute right-5 top-5 rounded-full bg-accent px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+              <span className="absolute right-6 top-6 border border-accent/50 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-accent">
                 {s.badge}
               </span>
             )}
-            <h2 className="text-lg font-semibold">{s.name}</h2>
-            <div className="mt-2 flex items-baseline gap-3">
-              <span className="tabular font-mono text-xl font-bold text-accent">{s.price}</span>
-              <span className="text-xs text-ink-soft">SLA: {s.sla}</span>
+            <h2 className="text-[17px] font-semibold tracking-tight">{s.name}</h2>
+            <div className="mt-3 flex items-baseline gap-3">
+              <span className="tabular font-mono text-lg font-semibold text-accent">{s.price}</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
+                SLA: {s.sla}
+              </span>
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">{s.scope}</p>
-            <button className="mt-5 rounded-full bg-ink px-5 py-2 text-sm font-medium text-paper transition hover:opacity-85">
-              Zamów →
+            <p className="mt-3 max-w-prose text-sm leading-relaxed text-ink-soft">{s.scope}</p>
+            <button className="mt-5 bg-ink px-4 py-2 text-[13px] font-medium text-paper transition hover:opacity-85">
+              Zamów ↗
             </button>
           </div>
         ))}
