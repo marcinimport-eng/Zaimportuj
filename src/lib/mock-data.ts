@@ -59,20 +59,20 @@ export const ORDERS: Order[] = [
     eta: "2026-08-02",
     vessel: "MSC AMBITION → Gdańsk BCT",
     progressPct: 68,
-    nextPayment: { label: "II transza 70% (balance)", amountPln: 217800, due: "2026-07-12" },
+    nextPayment: { label: "II transza 70% (dopłata)", amountPln: 217800, due: "2026-07-12" },
     events: [
       { date: "2026-07-04", title: "Kontener załadowany na statek", detail: "MSC AMBITION, wyjście z portu Yantian. ETA Gdańsk: 2 sierpnia.", kind: "status" },
-      { date: "2026-07-01", title: "Bill of Lading wystawiony", detail: "B/L nr MSCUYT482911 dodany do dokumentów.", kind: "doc" },
-      { date: "2026-06-27", title: "Raport inspekcji poprodukcyjnej", detail: "AQL 2.5 — wynik: PASS. 3 uwagi kosmetyczne, 48 zdjęć.", kind: "media" },
+      { date: "2026-07-01", title: "Konosament (B/L) wystawiony", detail: "Konosament nr MSCUYT482911 dodany do dokumentów.", kind: "doc" },
+      { date: "2026-06-27", title: "Raport inspekcji poprodukcyjnej", detail: "Kontrola AQL 2,5 — wynik: ZALICZONA. 3 uwagi kosmetyczne, 48 zdjęć.", kind: "media" },
       { date: "2026-06-12", title: "Produkcja zakończona", detail: "500/500 szt. gotowe do inspekcji.", kind: "status" },
       { date: "2026-05-08", title: "Zaliczka 30% zaksięgowana", detail: "93 340 PLN — potwierdzenie przekazane dostawcy.", kind: "payment" },
     ],
     documents: [
-      { name: "Proforma Invoice PI-2411", type: "PDF", date: "2026-05-06" },
-      { name: "Packing List", type: "PDF", date: "2026-06-30" },
-      { name: "Bill of Lading MSCUYT482911", type: "PDF", date: "2026-07-01" },
+      { name: "Faktura proforma PI-2411", type: "PDF", date: "2026-05-06" },
+      { name: "Lista pakowa (packing list)", type: "PDF", date: "2026-06-30" },
+      { name: "Konosament (B/L) MSCUYT482911", type: "PDF", date: "2026-07-01" },
       { name: "Deklaracja zgodności CE + EN 17128", type: "PDF", date: "2026-06-20" },
-      { name: "Raport inspekcji AQL (48 zdjęć)", type: "ZIP", date: "2026-06-27" },
+      { name: "Raport inspekcji jakości (48 zdjęć)", type: "ZIP", date: "2026-06-27" },
     ],
     inspectionPhotos: 48,
   },
@@ -92,7 +92,7 @@ export const ORDERS: Order[] = [
       { date: "2026-06-24", title: "Próbka zaakceptowana", detail: "Wideo z testu ładowania Qi w galerii.", kind: "media" },
     ],
     documents: [
-      { name: "Proforma Invoice PI-2418", type: "PDF", date: "2026-06-28" },
+      { name: "Faktura proforma PI-2418", type: "PDF", date: "2026-06-28" },
       { name: "Specyfikacja techniczna + branding", type: "PDF", date: "2026-06-22" },
     ],
     inspectionPhotos: 12,
@@ -107,7 +107,7 @@ export const ORDERS: Order[] = [
     eta: "—",
     progressPct: 8,
     events: [
-      { date: "2026-07-05", title: "Oferta w przygotowaniu", detail: "Negocjujemy DAP Gdańsk z instalacją. Oferta do akceptacji w 48h.", kind: "status" },
+      { date: "2026-07-05", title: "Oferta w przygotowaniu", detail: "Negocjujemy dostawę do Gdańska (DAP) z instalacją. Oferta do akceptacji w 48 h.", kind: "status" },
       { date: "2026-07-04", title: "Weryfikacja dostawcy: ZIELONY (91/100)", detail: "Raport AI + audyt dokumentów rejestrowych w załączeniu.", kind: "doc" },
     ],
     documents: [
@@ -124,8 +124,8 @@ export const SUPPLIER_SCAN_DEMO = {
   signals: [
     { label: "Wiek firmy", value: "3 lata", ok: true },
     { label: "Kapitał zarejestrowany", value: "500 000 CNY", ok: true },
-    { label: "Typ", value: "Trading company (nie fabryka)", ok: false },
+    { label: "Typ", value: "Firma handlowa (nie fabryka)", ok: false },
     { label: "Certyfikaty produktowe", value: "Brak CE w publicznym rejestrze", ok: false },
-    { label: "Spójność danych", value: "Adres zgodny z rejestrem AIC", ok: true },
+    { label: "Spójność danych", value: "Adres zgodny z rejestrem państwowym", ok: true },
   ],
 };

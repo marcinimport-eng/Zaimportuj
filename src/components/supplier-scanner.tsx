@@ -9,13 +9,13 @@ export function SupplierScanner() {
   const s = SUPPLIER_SCAN_DEMO;
 
   return (
-    <div className="border border-line bg-card shadow-[0_28px_64px_-24px_rgba(0,0,0,0.18)]">
+    <div className="overflow-hidden rounded-2xl border border-line bg-card shadow-[0_28px_64px_-24px_rgba(0,0,0,0.18)]">
       <div className="flex items-center justify-between border-b border-line px-5 py-3">
         <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft">
-          AI-2 / Skaner wiarygodności
+          AI / Skaner wiarygodności
         </span>
         <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft">
-          scoring 0–100
+          ocena 0–100
         </span>
       </div>
       <div className="p-5 sm:p-6">
@@ -28,11 +28,11 @@ export function SupplierScanner() {
           <input
             defaultValue={scanned ? s.name : ""}
             placeholder="np. Yiwu Sunshine Import & Export Co., Ltd."
-            className="h-10 w-full border border-line bg-paper px-3 text-sm outline-none focus:border-ink"
+            className="h-10 w-full rounded-lg border border-line bg-paper px-3 text-sm outline-none focus:border-ink"
           />
           <button
             onClick={() => setScanned(true)}
-            className="h-10 shrink-0 bg-ink px-4 text-sm font-medium text-paper transition hover:opacity-85"
+            className="btn-anim h-10 shrink-0 rounded-lg bg-ink px-4 text-sm font-medium text-paper hover:opacity-85"
           >
             Skanuj
           </button>
@@ -44,7 +44,7 @@ export function SupplierScanner() {
             animate={{ opacity: 1, height: "auto" }}
             className="overflow-hidden"
           >
-            <div className="mt-5 flex items-center gap-4 border border-amber-600/30 bg-amber-500/10 p-4">
+            <div className="mt-5 flex items-center gap-4 rounded-xl border border-amber-600/30 bg-amber-500/10 p-4">
               <div className="relative flex h-16 w-16 shrink-0 items-center justify-center">
                 <svg className="h-16 w-16 -rotate-90" viewBox="0 0 64 64">
                   <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="5" className="text-line" />
@@ -84,7 +84,7 @@ export function SupplierScanner() {
               ))}
             </ul>
 
-            <button className="mt-5 h-10 w-full bg-accent text-sm font-medium text-white transition hover:bg-accent-hover">
+            <button className="btn-anim sheen mt-5 h-10 w-full rounded-lg bg-accent text-sm font-medium text-white hover:bg-accent-hover">
               Zamów pełną weryfikację w 48h — 499 zł
             </button>
           </motion.div>

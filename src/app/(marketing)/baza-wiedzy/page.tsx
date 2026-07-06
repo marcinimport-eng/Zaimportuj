@@ -71,7 +71,7 @@ export default function KnowledgeBasePage() {
         aktualizacji — i powiadamia klientów, których to dotyczy.
       </p>
 
-      <div className="mt-10 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {TOOLS.map((t) => (
           <a key={t.name} href={t.href} className="group bg-card p-5 transition hover:bg-accent-soft/40">
             <h3 className="text-sm font-semibold tracking-tight group-hover:text-accent">

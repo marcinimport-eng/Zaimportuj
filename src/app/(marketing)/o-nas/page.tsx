@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 const TEAM = [
   { name: "Michał Krawczyk", role: "CEO, 12 lat w imporcie", loc: "WAW", initials: "MK" },
   { name: "Anna Wójcik", role: "Agent celny (licencja MF)", loc: "WAW", initials: "AW" },
-  { name: "Li Wei 李伟", role: "Head of Sourcing", loc: "SZX", initials: "LW" },
-  { name: "Zhang Min 张敏", role: "QC / inspekcje", loc: "YIW", initials: "ZM" },
+  { name: "Li Wei 李伟", role: "Szef działu zakupów", loc: "SZX", initials: "LW" },
+  { name: "Zhang Min 张敏", role: "Kontrola jakości / inspekcje", loc: "YIW", initials: "ZM" },
   { name: "Piotr Zieliński", role: "Spedycja i logistyka", loc: "GDN", initials: "PZ" },
   { name: "Katarzyna Nowak", role: "Rozliczenia, KSeF", loc: "WAW", initials: "KN" },
 ];
@@ -28,10 +28,10 @@ export default function AboutPage() {
         w Warszawie i własna odprawa w Gdańsku.
       </p>
 
-      <div className="mt-10 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
         {TEAM.map((t) => (
           <div key={t.name} className="flex items-center gap-4 bg-card p-5">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-accent-soft font-mono text-xs font-semibold text-accent">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft font-mono text-xs font-semibold text-accent">
               {t.initials}
             </div>
             <div className="min-w-0">
@@ -44,7 +44,7 @@ export default function AboutPage() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3">
+      <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
         {[
           { title: "Licencja agencji celnej", desc: "Wpis do rejestru przedstawicieli celnych, gwarancja generalna." },
           { title: "Rachunek powierniczy", desc: "Opcja escrow: dostawca dostaje pieniądze po pozytywnej inspekcji." },
@@ -57,7 +57,7 @@ export default function AboutPage() {
         ))}
       </div>
 
-      <div className="mt-10 grid items-center gap-8 bg-ink px-6 py-10 text-paper sm:px-10 lg:grid-cols-[1fr_auto]">
+      <div className="mt-10 grid items-center gap-8 rounded-2xl bg-ink px-6 py-10 text-paper sm:px-10 lg:grid-cols-[1fr_auto]">
         <div>
           <h2 className="text-2xl font-semibold tracking-[-0.02em]">
             Umów bezpłatną konsultację 30 min
@@ -68,7 +68,7 @@ export default function AboutPage() {
         </div>
         <a
           href="mailto:office@xtn.pl"
-          className="bg-accent px-6 py-3 text-center text-sm font-medium text-white transition hover:bg-accent-hover"
+          className="btn-anim sheen rounded-lg bg-accent px-6 py-3 text-center text-sm font-medium text-white hover:bg-accent-hover"
         >
           Wybierz termin ↗
         </a>

@@ -54,7 +54,7 @@ export default function PricingPage() {
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         Prowizja od importu kompleksowego
       </h2>
-      <div className="mt-4 overflow-x-auto border border-line">
+      <div className="mt-4 overflow-x-auto rounded-xl border border-line">
         <table className="w-full min-w-[480px] bg-card text-sm">
           <thead>
             <tr className="border-b border-line text-left">
@@ -82,17 +82,17 @@ export default function PricingPage() {
       </div>
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">Przykładowe kalkulacje</h2>
-      <div className="mt-4 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3">
+      <div className="mt-4 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
         {EXAMPLES.map((e) => (
           <div key={e.product} className="bg-card p-5">
             <h3 className="text-sm font-semibold tracking-tight">{e.product}</h3>
             <dl className="mt-4">
               <div className="flex justify-between border-b border-line py-2 text-[13px]">
-                <dt className="text-ink-soft">Towar (EXW)</dt>
+                <dt className="text-ink-soft">Towar (cena fabryczna)</dt>
                 <dd className="tabular font-mono">{e.goods}</dd>
               </div>
               <div className="flex justify-between border-b border-line py-2 text-[13px]">
-                <dt className="text-ink-soft">Landed cost</dt>
+                <dt className="text-ink-soft">Pełny koszt importu</dt>
                 <dd className="tabular font-mono font-semibold">{e.landed}</dd>
               </div>
               <div className="flex justify-between border-b border-line py-2 text-[13px]">

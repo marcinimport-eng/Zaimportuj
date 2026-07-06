@@ -22,7 +22,7 @@ export function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label={dark ? "Włącz tryb jasny" : "Włącz tryb ciemny"}
-      className="flex h-8 w-8 items-center justify-center border border-line text-ink-soft transition hover:border-ink hover:text-ink"
+      className="btn-anim flex h-8 w-8 items-center justify-center rounded-lg border border-line text-ink-soft transition hover:border-ink hover:text-ink"
     >
       {dark ? (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">

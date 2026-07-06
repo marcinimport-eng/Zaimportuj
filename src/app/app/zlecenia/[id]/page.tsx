@@ -9,11 +9,11 @@ export function generateStaticParams() {
 }
 
 const EVENT_CODE: Record<string, string> = {
-  status: "ST",
-  doc: "DOC",
-  payment: "PAY",
-  media: "IMG",
-  alert: "ALT",
+  status: "STA",
+  doc: "DOK",
+  payment: "PŁT",
+  media: "FOT",
+  alert: "ALR",
 };
 
 export default async function OrderPage({
@@ -38,7 +38,7 @@ export default async function OrderPage({
         <div>
           <div className="flex items-center gap-2.5">
             <span className="font-mono text-sm font-semibold text-accent">{order.id}</span>
-            <span className="border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
+            <span className="rounded-md border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
               {order.status}
             </span>
           </div>
@@ -50,12 +50,12 @@ export default async function OrderPage({
             {formatPln(order.valueUsd * 3.68)}
           </div>
           <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
-            {order.eta !== "—" ? `ETA ${order.eta}` : "w wycenie"}
+            {order.eta !== "—" ? `przybycie ${order.eta}` : "w wycenie"}
           </div>
         </div>
       </div>
 
-      <div className="mt-5 border border-line bg-card p-5">
+      <div className="mt-5 rounded-xl border border-line bg-card p-5">
         <Pipeline status={order.status} />
         {order.vessel && (
           <div className="mt-4 flex items-center justify-between border-t border-line pt-3 font-mono text-[11px] uppercase tracking-[0.08em]">
@@ -69,7 +69,7 @@ export default async function OrderPage({
       </div>
 
       {order.nextPayment && (
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-4 border border-accent/40 bg-accent-soft/60 p-5">
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-accent/40 bg-accent-soft/60 p-5">
           <div>
             <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-accent">
               Najbliższa płatność
@@ -83,7 +83,7 @@ export default async function OrderPage({
             <span className="tabular font-mono text-xl font-semibold">
               {formatPln(order.nextPayment.amountPln)}
             </span>
-            <button className="bg-accent px-5 py-2.5 text-sm font-medium text-white transition hover:bg-accent-hover">
+            <button className="btn-anim rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white hover:bg-accent-hover">
               Zapłać (P24)
             </button>
           </div>
@@ -101,7 +101,7 @@ export default async function OrderPage({
                   <span className="absolute left-[17px] top-8 h-full w-px bg-line" aria-hidden />
                 )}
                 <span
-                  className={`z-10 flex h-9 w-9 shrink-0 items-center justify-center font-mono text-[9px] font-semibold ${
+                  className={`z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg font-mono text-[9px] font-semibold ${
                     i === 0
                       ? "bg-accent text-white"
                       : "border border-line bg-card text-ink-soft"
@@ -109,7 +109,7 @@ export default async function OrderPage({
                 >
                   {EVENT_CODE[e.kind]}
                 </span>
-                <div className="min-w-0 flex-1 border border-line bg-card p-4">
+                <div className="min-w-0 flex-1 rounded-xl border border-line bg-card p-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <h3 className="text-sm font-semibold tracking-tight">{e.title}</h3>
                     <time className="tabular font-mono text-[10px] text-ink-soft">{e.date}</time>
@@ -145,7 +145,7 @@ export default async function OrderPage({
           {order.inspectionPhotos > 0 && (
             <div>
               <div className="eyebrow">Media z inspekcji</div>
-              <div className="mt-4 grid grid-cols-3 gap-px overflow-hidden border border-line bg-line">
+              <div className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-line bg-line">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
@@ -155,20 +155,20 @@ export default async function OrderPage({
                   </div>
                 ))}
               </div>
-              <button className="mt-2.5 w-full border border-line py-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft transition hover:border-ink hover:text-ink">
+              <button className="btn-anim mt-2.5 w-full rounded-lg border border-line py-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft transition hover:border-ink hover:text-ink">
                 Zobacz wszystkie ({order.inspectionPhotos}) ↗
               </button>
             </div>
           )}
 
-          <div className="bg-ink p-4 text-paper">
+          <div className="rounded-xl bg-ink p-4 text-paper">
             <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em]">
-              Copilot AI
+              Asystent AI
             </div>
             <p className="mt-2 text-[11px] leading-relaxed opacity-60">
               „Przelicz co się stanie, jak zwiększę zamówienie do 5000 szt.”
             </p>
-            <button className="mt-3 w-full bg-accent py-2 text-xs font-medium text-white transition hover:bg-accent-hover">
+            <button className="btn-anim mt-3 w-full rounded-lg bg-accent py-2 text-xs font-medium text-white hover:bg-accent-hover">
               Zapytaj o to zlecenie
             </button>
           </div>

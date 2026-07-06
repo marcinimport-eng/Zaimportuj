@@ -12,10 +12,10 @@ import {
 } from "@/lib/landed-cost";
 
 const TRANSPORTS: { id: TransportMode; label: string; code: string }[] = [
-  { id: "sea-lcl", label: "Morze LCL", code: "SEA·LCL" },
-  { id: "sea-fcl", label: "Morze FCL", code: "SEA·FCL" },
-  { id: "rail", label: "Kolej", code: "RAIL" },
-  { id: "air", label: "Lotniczy", code: "AIR" },
+  { id: "sea-lcl", label: "Morze LCL", code: "MORZE·LCL" },
+  { id: "sea-fcl", label: "Morze FCL", code: "MORZE·FCL" },
+  { id: "rail", label: "Kolej", code: "KOLEJ" },
+  { id: "air", label: "Lotniczy", code: "LOT" },
 ];
 
 const inputCls =
@@ -75,7 +75,7 @@ export function Calculator() {
   return (
     <div
       id="kalkulator"
-      className="border border-line bg-card shadow-[0_28px_64px_-24px_rgba(0,0,0,0.18)]"
+      className="overflow-hidden rounded-2xl border border-line bg-card shadow-[0_28px_64px_-24px_rgba(0,0,0,0.18)]"
     >
       <div className="grid lg:grid-cols-[1fr_400px]">
         {/* ── Wejście ── */}
@@ -88,9 +88,9 @@ export function Calculator() {
               value={link}
               onChange={(e) => setLink(e.target.value)}
               placeholder="https://www.alibaba.com/product-detail/…"
-              className="h-10 w-full border border-line bg-paper px-3 text-sm outline-none transition focus:border-ink"
+              className="h-10 w-full rounded-lg border border-line bg-paper px-3 text-sm outline-none transition focus:border-ink"
             />
-            <button className="h-10 shrink-0 bg-ink px-4 text-sm font-medium text-paper transition hover:opacity-85">
+            <button className="btn-anim h-10 shrink-0 rounded-lg bg-ink px-4 text-sm font-medium text-paper hover:opacity-85">
               Analizuj
             </button>
           </div>
@@ -134,7 +134,7 @@ export function Calculator() {
               <button
                 key={c.id}
                 onClick={() => setCategoryId(c.id)}
-                className={`border px-3 py-1.5 text-xs font-medium transition ${
+                className={`btn-anim rounded-md border px-3 py-1.5 text-xs font-medium ${
                   categoryId === c.id
                     ? "border-ink bg-ink text-paper"
                     : "border-line text-ink-soft hover:border-ink hover:text-ink"
@@ -148,7 +148,7 @@ export function Calculator() {
           <label className="mt-6 block font-mono text-[10px] uppercase tracking-[0.12em] text-ink-soft">
             Transport
           </label>
-          <div className="mt-2 grid grid-cols-2 gap-px overflow-hidden border border-line bg-line sm:grid-cols-4">
+          <div className="mt-2 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-4">
             {TRANSPORTS.map((t) => (
               <button
                 key={t.id}
@@ -159,7 +159,7 @@ export function Calculator() {
               >
                 <div className="text-xs font-semibold">{t.label}</div>
                 <div className={`tabular mt-0.5 font-mono text-[10px] ${transport === t.id ? "text-paper/60" : "text-ink-soft"}`}>
-                  {t.code} · ~{FREIGHT_RATES[t.id].transitDays}D
+                  {t.code} · ~{FREIGHT_RATES[t.id].transitDays} dni
                 </div>
               </button>
             ))}
@@ -170,7 +170,7 @@ export function Calculator() {
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-soft">
-                  Klasyfikacja AI / TARIC · pewność{" "}
+                  Klasyfikacja AI / taryfa celna UE · pewność{" "}
                   {(result.category.confidence * 100).toFixed(0)}%
                 </div>
                 <div className="mt-1.5 font-mono text-sm font-semibold">
@@ -183,13 +183,13 @@ export function Calculator() {
               </div>
               <div className="flex gap-1.5">
                 {result.category.requiresCE && (
-                  <span className="border border-amber-600/40 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-400">
+                  <span className="rounded-md border border-amber-600/40 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-400">
                     CE
                   </span>
                 )}
                 {result.category.antiDumping && (
-                  <span className="border border-accent/50 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-accent">
-                    AD 48,5%
+                  <span className="rounded-md border border-accent/50 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide text-accent">
+                    ANTYDUMPING
                   </span>
                 )}
               </div>
@@ -204,7 +204,7 @@ export function Calculator() {
         {/* ── Wynik ── */}
         <div className="flex flex-col bg-paper p-6 sm:p-8">
           <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft">
-            Pełny koszt importu / landed
+            Pełny koszt importu (z dostawą)
           </div>
           <AnimatePresence mode="popLayout">
             <motion.div
@@ -223,7 +223,7 @@ export function Calculator() {
           </div>
 
           {/* struktura kosztów */}
-          <div className="mt-6 flex h-2 w-full overflow-hidden">
+          <div className="mt-6 flex h-2 w-full overflow-hidden rounded-full">
             {breakdown.map((b) => (
               <motion.div
                 key={b.label}
@@ -254,10 +254,10 @@ export function Calculator() {
             <Row label="Agencja celna + SAD" value={formatUsd(result.agencyFeeUsd)} />
           </div>
 
-          <div className="mt-5 bg-ink p-4 text-paper">
+          <div className="mt-5 rounded-xl bg-ink p-4 text-paper">
             <div className="flex items-baseline justify-between">
               <span className="font-mono text-[10px] uppercase tracking-[0.12em] opacity-60">
-                Koszt / szt. landed
+                Koszt jednostkowy
               </span>
               <span className="tabular font-mono text-lg font-semibold">
                 {formatPln(result.unitLandedPln, 2)}
@@ -265,7 +265,7 @@ export function Calculator() {
             </div>
             <div className="mt-2 flex items-baseline justify-between">
               <span className="font-mono text-[10px] uppercase tracking-[0.12em] opacity-60">
-                Sugerowana detaliczna
+                Sugerowana cena detaliczna
               </span>
               <span className="tabular font-mono text-sm">
                 {formatPln(result.suggestedRetailPln, 2)}
@@ -282,22 +282,22 @@ export function Calculator() {
                 <input
                   type="email"
                   placeholder="twoj@email.pl"
-                  className="h-10 w-full border border-line bg-card px-3 text-sm outline-none focus:border-ink"
+                  className="h-10 w-full rounded-lg border border-line bg-card px-3 text-sm outline-none focus:border-ink"
                 />
-                <button className="h-10 shrink-0 bg-accent px-4 text-sm font-medium text-white hover:bg-accent-hover">
+                <button className="btn-anim h-10 shrink-0 rounded-lg bg-accent px-4 text-sm font-medium text-white hover:bg-accent-hover">
                   Wyślij PDF
                 </button>
               </div>
             ) : (
               <button
                 onClick={() => setEmailGate(true)}
-                className="h-10 w-full bg-accent text-sm font-medium text-white transition hover:bg-accent-hover"
+                className="btn-anim sheen h-10 w-full rounded-lg bg-accent text-sm font-medium text-white hover:bg-accent-hover"
               >
                 Pobierz pełny raport PDF ↗
               </button>
             )}
             <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
-              Raport: analiza MOQ · ryzyka · checklista certyfikacji
+              Raport: minimalne zamówienie · ryzyka · lista certyfikacji
             </p>
           </div>
         </div>

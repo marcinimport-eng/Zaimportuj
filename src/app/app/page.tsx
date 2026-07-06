@@ -5,7 +5,7 @@ import { Pipeline } from "@/components/pipeline";
 
 const KPIS = [
   { label: "Aktywne zlecenia", value: "3", sub: "1 w transporcie" },
-  { label: "Towar w drodze", value: "311 tys. zł", sub: "ETA Gdańsk: 2 sie" },
+  { label: "Towar w drodze", value: "311 tys. zł", sub: "w Gdańsku: 2 sie" },
   { label: "Najbliższa płatność", value: "217,8 tys. zł", sub: "II transza · 12 lip" },
   { label: "Alerty", value: "1", sub: "zapas X9 Pro na 21 dni" },
 ];
@@ -22,14 +22,14 @@ export default function DashboardPage() {
         </div>
         <Link
           href="/app"
-          className="bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-accent-hover"
+          className="btn-anim rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-hover"
         >
           + Nowe zlecenie
         </Link>
       </div>
 
       {/* KPI */}
-      <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden border border-line bg-line lg:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line lg:grid-cols-4">
         {KPIS.map((k) => (
           <div key={k.label} className="bg-card p-4">
             <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-ink-soft">
@@ -44,7 +44,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Alert re-order (integracja Allegro) */}
-      <div className="mt-4 flex items-start gap-3 border border-amber-600/30 bg-amber-500/10 p-4">
+      <div className="mt-4 flex items-start gap-3 rounded-xl border border-amber-600/30 bg-amber-500/10 p-4">
         <span className="font-mono text-xs font-bold text-amber-700 dark:text-amber-400">!!</span>
         <div className="text-sm leading-relaxed">
           <span className="font-semibold">Sugestia re-orderu (Allegro):</span>{" "}
@@ -65,13 +65,13 @@ export default function DashboardPage() {
           <Link
             key={o.id}
             href={`/app/zlecenia/${o.id}`}
-            className="block border border-line bg-card p-5 transition hover:border-ink/40"
+            className="card-anim block rounded-xl border border-line bg-card p-5 hover:border-ink/40"
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
                 <div className="flex items-center gap-2.5">
                   <span className="font-mono text-xs font-semibold text-accent">{o.id}</span>
-                  <span className="border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
+                  <span className="rounded-md border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
                     {o.status}
                   </span>
                 </div>
@@ -85,7 +85,7 @@ export default function DashboardPage() {
                   {formatPln(o.valueUsd * 3.68)}
                 </div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-ink-soft">
-                  {o.eta !== "—" ? `ETA ${o.eta}` : "oferta w przygotowaniu"}
+                  {o.eta !== "—" ? `przybycie ${o.eta}` : "oferta w przygotowaniu"}
                 </div>
               </div>
             </div>

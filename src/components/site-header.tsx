@@ -13,7 +13,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-line bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-6 w-6 items-center justify-center rounded-[4px] bg-accent font-mono text-[13px] font-bold leading-none text-white">
+          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-accent font-mono text-[13px] font-bold leading-none text-white">
             Z
           </span>
           <span className="text-[15px] font-semibold tracking-tight">
@@ -36,13 +36,13 @@ export function SiteHeader() {
           <ThemeToggle />
           <Link
             href="/app"
-            className="hidden border border-line px-3.5 py-1.5 text-[13px] font-medium transition hover:border-ink sm:block"
+            className="btn-anim hidden rounded-lg border border-line px-3.5 py-1.5 text-[13px] font-medium hover:border-ink sm:block"
           >
             Panel klienta
           </Link>
           <Link
             href="/#kalkulator"
-            className="bg-accent px-3.5 py-1.5 text-[13px] font-medium text-white transition hover:bg-accent-hover"
+            className="btn-anim rounded-lg bg-accent px-3.5 py-1.5 text-[13px] font-medium text-white hover:bg-accent-hover"
           >
             Wyceń import
           </Link>
