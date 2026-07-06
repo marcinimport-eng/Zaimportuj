@@ -44,7 +44,7 @@ const ARTICLES = [
   },
   {
     cluster: "Dokumenty",
-    title: "Bill of Lading, packing list, SAD — słownik dokumentów importera",
+    title: "Konosament, lista pakowa, SAD — słownik dokumentów importera",
     updated: "2026-04-18",
     author: "Piotr Zieliński, spedytor",
     time: "11 min",
@@ -54,7 +54,7 @@ const ARTICLES = [
 const TOOLS = [
   { name: "Kalkulator cła i VAT", desc: "Stawka dla Twojego kodu HS", href: "/#kalkulator" },
   { name: "Konwerter CBM", desc: "Kartony → m³ → koszt frachtu", href: "#" },
-  { name: "Wizard Incoterms", desc: "EXW, FOB czy CIF? 5 pytań i wiesz", href: "#" },
+  { name: "Kreator Incoterms", desc: "EXW, FOB czy CIF? 5 pytań i wiesz", href: "#" },
   { name: "Słownik importera", desc: "120 pojęć celno-logistycznych", href: "#" },
 ];
 

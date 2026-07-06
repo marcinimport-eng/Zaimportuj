@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Zaimportuj.pl",
   },
   description:
-    "AI-native platforma importu z Chin. Policz pełny landed cost w 60 sekund, zweryfikuj dostawcę, śledź kontener w panelu klienta. Prowizja od 3,9%.",
+    "AI-native platforma importu z Chin. Policz pełny koszt importu w 60 sekund, zweryfikuj dostawcę, śledź kontener w panelu klienta. Prowizja od 3,9%.",
   keywords: ["import z chin", "landed cost", "cło", "weryfikacja dostawcy", "1688", "alibaba"],
   openGraph: {
     title: "Zaimportuj.pl — Import z Chin bez ryzyka",

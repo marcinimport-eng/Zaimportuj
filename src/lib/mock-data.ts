@@ -69,7 +69,7 @@ export const ORDERS: Order[] = [
     ],
     documents: [
       { name: "Faktura proforma PI-2411", type: "PDF", date: "2026-05-06" },
-      { name: "Lista pakowa (packing list)", type: "PDF", date: "2026-06-30" },
+      { name: "Lista pakowa", type: "PDF", date: "2026-06-30" },
       { name: "Konosament (B/L) MSCUYT482911", type: "PDF", date: "2026-07-01" },
       { name: "Deklaracja zgodności CE + EN 17128", type: "PDF", date: "2026-06-20" },
       { name: "Raport inspekcji jakości (48 zdjęć)", type: "ZIP", date: "2026-06-27" },

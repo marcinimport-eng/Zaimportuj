@@ -13,10 +13,10 @@ const COLS = [
   {
     h: "Narzędzia",
     items: [
-      ["Kalkulator landed cost", "/#kalkulator"],
+      ["Kalkulator kosztu importu", "/#kalkulator"],
       ["Baza wiedzy / Akademia", "/baza-wiedzy"],
       ["Konwerter CBM", "/baza-wiedzy"],
-      ["Wizard Incoterms", "/baza-wiedzy"],
+      ["Kreator Incoterms", "/baza-wiedzy"],
     ],
   },
   {
